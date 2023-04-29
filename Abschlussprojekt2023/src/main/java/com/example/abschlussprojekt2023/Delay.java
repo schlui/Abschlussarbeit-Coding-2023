@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class Delay extends Objects{
 
     public Delay() {
-
+        super();
     }
 
     @Override

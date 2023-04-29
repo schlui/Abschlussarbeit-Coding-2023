@@ -7,7 +7,7 @@ public class Loops extends Objects{
 
 
     public Loops() {
-       
+       super();
     }
 
     @Override

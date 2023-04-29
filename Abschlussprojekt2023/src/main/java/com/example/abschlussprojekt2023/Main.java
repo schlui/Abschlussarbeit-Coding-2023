@@ -6,14 +6,20 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
@@ -27,14 +33,40 @@ public class Main extends Application {
         VBox process = new VBox();
         VBox status = new VBox();
         HBox group = new HBox();
-        Pane root = new Pane();
+        BorderPane root = new BorderPane();
 
         Scene scene =  new Scene(root, 1200, 750, Color.LIGHTBLUE);
 
 
 
+        ToolBar toolbar = new ToolBar();
 
-        //TOOLBAR
+        MenuBar menuBar = new MenuBar();
+
+        Menu fileMenu = new Menu("Datei");
+        // Dropdown Buttons
+        MenuItem oeffnen = new MenuItem("Öffnen");
+        MenuItem speichern = new MenuItem("Speichern");
+        MenuItem loeschen = new MenuItem("Löschen");
+
+        oeffnen.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Datei öffnen");
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                // Hier kann man die Datei weiterverarbeiten
+                System.out.println("Datei ausgewählt: " + selectedFile.getName());
+            }
+        });
+
+        fileMenu.getItems().addAll(oeffnen, speichern, loeschen);
+        menuBar.getMenus().add(fileMenu);
+
+        toolbar.getItems().add(menuBar);
+        
+
+
+        root.setTop(toolbar);
 
 
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);

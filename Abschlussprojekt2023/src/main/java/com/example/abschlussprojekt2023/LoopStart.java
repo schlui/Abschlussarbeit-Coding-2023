@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class LoopStart extends Loops {
 
     public LoopStart() {
-    
+        super();
     }
 
     @Override

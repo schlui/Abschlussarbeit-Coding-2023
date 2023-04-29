@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class Set extends Objects{
 
 public Set() {
-
+    super();
 }
 
 @Override

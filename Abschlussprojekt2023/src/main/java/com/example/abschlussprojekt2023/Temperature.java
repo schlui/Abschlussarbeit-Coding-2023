@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class Temperature extends Set {
 
     public Temperature() {
-
+        super();
     }
     
     @Override

@@ -1,6 +1,7 @@
 package com.example.abschlussprojekt2023;
 
 import javafx.geometry.Point2D;
+import javafx.scene.Cursor;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 
@@ -33,30 +34,26 @@ public class Objects {
         rectangle.setY(50);
         rectangle.setWidth(200);
         rectangle.setHeight(50);
-        
-        rectangle.setOnMousePressed(e -> {
-            rectangle.setUserData(new Point2D(e.getSceneX() - rectangle.getX(), e.getSceneY() - rectangle.getY()));
+        rectangle.setFill(Color.BLUE);
+
+        // Drag and Drop-Events hinzufügen
+        rectangle.setOnMousePressed(event -> {
+            rectangle.setCursor(Cursor.CLOSED_HAND);
         });
 
-        rectangle.setOnMouseDragged(e -> {
-            Point2D start = (Point2D) rectangle.getUserData();
-    
-
-            double newX = e.getSceneX() - start.getX();
-            double newY = e.getSceneY() - start.getY();
-    
-            rectangle.setX(newX);
-            rectangle.setY(newY);
+        rectangle.setOnMouseDragged(event -> {
+            double offsetX = event.getSceneX() - rectangle.getTranslateX();
+            double offsetY = event.getSceneY() - rectangle.getTranslateY();
+            rectangle.setX(offsetX);
+            rectangle.setY(offsetY);
         });
 
-        rectangle.setOnMouseReleased(e -> {
-           
-            rectangle.setUserData(null);
+        rectangle.setOnMouseReleased(event -> {
+            rectangle.setCursor(Cursor.DEFAULT);
         });
-
     }
 
-    public  Rectangle getRectangle() {
+    public Rectangle getRectangle() {
         return rectangle;
     }
 

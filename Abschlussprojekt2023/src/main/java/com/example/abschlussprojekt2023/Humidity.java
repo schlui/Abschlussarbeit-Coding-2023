@@ -7,7 +7,7 @@ public class Humidity extends Set{
 
 
     public Humidity(){
-        
+        super();
     }
     @Override
     public void initRectangle() {
