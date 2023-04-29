@@ -2,70 +2,87 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
-import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
-import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuBar;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.ToolBar;
-import javafx.scene.layout.*;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundFill;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-
-        Objects rectangle = new Objects();
-        rectangle.setRectangle(new Rectangle(200, 100, 150, 100));
-
-        Rectangle rect = new Rectangle();
-        rect.setX(rectangle.getRectangle().getX());
-        rect.setY(rectangle.getRectangle().getY());
-        rect.setWidth(rectangle.getRectangle().getWidth());
-        rect.setHeight(rectangle.getRectangle().getHeight());
-        rect.setFill(Color.BLUE);
-
         VBox objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
         HBox group = new HBox();
-        Pane root = new Pane();
+        BorderPane root = new BorderPane();
 
-        Scene scene =  new Scene(root, 1200, 750, Color.LIGHTBLUE);
+        Scene scene = new Scene(root, 1200, 750, Color.LIGHTBLUE);
 
+        // TOOLBAR
+        ToolBar toolbar = new ToolBar();
 
-        objects.getChildren().addAll(rect);
+        MenuBar menuBar = new MenuBar();
 
+        Menu fileMenu = new Menu("Datei");
+        // Dropdown Buttons
+        MenuItem oeffnen = new MenuItem("Öffnen");
+        MenuItem speichern = new MenuItem("Speichern");
+        MenuItem loeschen = new MenuItem("Löschen");
 
-        //TOOLBAR
+        oeffnen.setOnAction(e -> {
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Datei öffnen");
+            File selectedFile = fileChooser.showOpenDialog(stage);
+            if (selectedFile != null) {
+                // Hier kann man die Datei weiterverarbeiten
+                System.out.println("Datei ausgewählt: " + selectedFile.getName());
+            }
+        });
 
+        fileMenu.getItems().addAll(oeffnen, speichern, loeschen);
+        menuBar.getMenus().add(fileMenu);
+
+        toolbar.getItems().add(menuBar);
+
+        root.setTop(toolbar);
 
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
-        
         LoopStart obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
 
         LoopEnd obj_loopEnd = new LoopEnd();
         obj_loopEnd.initRectangle();
-        
+
         Temperature obj_temp = new Temperature();
         obj_temp.initRectangle();
 
         Humidity obj_hum = new Humidity();
         obj_hum.initRectangle();
 
-        Delay obj_delay = new Delay(); 
+        Delay obj_delay = new Delay();
         obj_delay.initRectangle();
-
 
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
@@ -80,24 +97,18 @@ public class Main extends Application {
         process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         process.setPadding(new Insets(10));
 
-
-
         status.setSpacing(10);
         status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
         status.prefHeightProperty().bind(scene.heightProperty().multiply(0.9));
         status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         status.setPadding(new Insets(10));
 
-
         group.setSpacing(space);
         group.setPadding(new Insets(space));
         group.getChildren().addAll( objects, process, status);
         group.setAlignment(Pos.CENTER);
 
-        root.getChildren().addAll(group);
-
-
-
+        root.setCenter(group);
 
         stage.setScene(scene);
         stage.setTitle("Abschlussprojekt 2023");
