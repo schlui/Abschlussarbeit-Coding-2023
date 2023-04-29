@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
@@ -20,8 +21,15 @@ public class Main extends Application {
     public void start(Stage stage) throws IOException {
 
 
+        Objects rectangle = new Objects();
+        rectangle.setRectangle(new Rectangle(200, 100, 150, 100));
 
-
+        Rectangle rect = new Rectangle();
+        rect.setX(rectangle.getRectangle().getX());
+        rect.setY(rectangle.getRectangle().getY());
+        rect.setWidth(rectangle.getRectangle().getWidth());
+        rect.setHeight(rectangle.getRectangle().getHeight());
+        rect.setFill(Color.BLUE);
 
         VBox objects = new VBox();
         VBox process = new VBox();
@@ -30,6 +38,10 @@ public class Main extends Application {
         Pane root = new Pane();
 
         Scene scene =  new Scene(root, 1200, 750, Color.LIGHTBLUE);
+
+
+        objects.getChildren().addAll(rect);
+
 
         //TOOLBAR
 
@@ -70,6 +82,8 @@ public class Main extends Application {
         group.setAlignment(Pos.CENTER);
 
         root.getChildren().addAll(group);
+
+
 
 
         stage.setScene(scene);
