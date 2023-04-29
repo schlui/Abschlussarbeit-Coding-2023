@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.*;
@@ -38,7 +39,21 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
-        Rectangle object1 = new Rectangle(50, 30, Color.BLACK);
+        
+        LoopStart obj_loopStart = new LoopStart();
+        obj_loopStart.initRectangle();
+
+        LoopEnd obj_loopEnd = new LoopEnd();
+        obj_loopEnd.initRectangle();
+        
+        Temperature obj_temp = new Temperature();
+        obj_temp.initRectangle();
+
+        Humidity obj_hum = new Humidity();
+        obj_hum.initRectangle();
+
+        Delay obj_delay = new Delay(); 
+        obj_delay.initRectangle();
 
 
         objects.setSpacing(10);
@@ -46,8 +61,7 @@ public class Main extends Application {
         objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
         objects.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         objects.setPadding(new Insets(10));
-        objects.getChildren().addAll(object1);
-
+        objects.getChildren().addAll(obj_loopStart.getRectangle(), obj_loopEnd.getRectangle(), obj_temp.getRectangle(), obj_hum.getRectangle(), obj_delay.getRectangle());
 
         process.setSpacing(10);
         process.prefWidthProperty().bind(scene.widthProperty().multiply(0.5));
