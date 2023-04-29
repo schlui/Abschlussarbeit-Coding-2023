@@ -6,7 +6,7 @@ import javafx.scene.shape.Rectangle;
 public class LoopEnd extends Loops {
 
     public LoopEnd() {
-        // Leerer Konstruktor
+        
     }
 
     @Override

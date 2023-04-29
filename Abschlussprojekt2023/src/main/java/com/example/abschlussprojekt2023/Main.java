@@ -29,6 +29,9 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
+
+      
+
         VBox objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
@@ -48,15 +51,7 @@ public class Main extends Application {
         MenuItem speichern = new MenuItem("Speichern");
         MenuItem loeschen = new MenuItem("Löschen");
 
-        oeffnen.setOnAction(e -> {
-            FileChooser fileChooser = new FileChooser();
-            fileChooser.setTitle("Datei öffnen");
-            File selectedFile = fileChooser.showOpenDialog(stage);
-            if (selectedFile != null) {
-                // Hier kann man die Datei weiterverarbeiten
-                System.out.println("Datei ausgewählt: " + selectedFile.getName());
-            }
-        });
+        objects.getChildren().addAll(rect);
 
         fileMenu.getItems().addAll(oeffnen, speichern, loeschen);
         menuBar.getMenus().add(fileMenu);
