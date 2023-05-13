@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -16,24 +17,18 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Optional;
 
 public class Main extends Application {
 
-
-
-
     @Override
     public void start(Stage stage) throws IOException {
-
-
-       
-       
-
         VBox objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
@@ -58,7 +53,6 @@ public class Main extends Application {
             fileChooser.setTitle("Datei öffnen");
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
-                
                 System.out.println("Datei ausgewählt: " + selectedFile.getName());
             }
         });
@@ -74,38 +68,25 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
-
-
-
-        
-
         LoopStart obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
-        obj_loopStart.makeDraggable(process);
-        
-        
+        makeRectangleClickable(obj_loopStart.getRectangle(), process);
 
         LoopEnd obj_loopEnd = new LoopEnd();
         obj_loopEnd.initRectangle();
-        obj_loopEnd.makeDraggable(process);
-   
+        makeRectangleClickable(obj_loopEnd.getRectangle(), process);
 
         Temperature obj_temp = new Temperature();
         obj_temp.initRectangle();
-        obj_temp.makeDraggable(process);
-     
+        makeRectangleClickable(obj_temp.getRectangle(), process);
 
         Humidity obj_hum = new Humidity();
         obj_hum.initRectangle();
-        obj_hum.makeDraggable(process);
-     
+        makeRectangleClickable(obj_hum.getRectangle(), process);
 
         Delay obj_delay = new Delay();
         obj_delay.initRectangle();
-        obj_delay.makeDraggable(process);
-    
-
-        
+        makeRectangleClickable(obj_delay.getRectangle(), process);
 
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
@@ -128,7 +109,7 @@ public class Main extends Application {
 
         group.setSpacing(space);
         group.setPadding(new Insets(space));
-        group.getChildren().addAll( objects, process, status);
+        group.getChildren().addAll(objects, process, status);
         group.setAlignment(Pos.CENTER);
 
         root.setCenter(group);
@@ -136,10 +117,24 @@ public class Main extends Application {
         stage.setScene(scene);
         stage.setTitle("Abschlussprojekt 2023");
         stage.show();
+    }
 
+    private void makeRectangleClickable(Rectangle rectangle, VBox process) {
+        rectangle.setOnMouseClicked(event -> {
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Zahlenwert eingeben");
+            dialog.setHeaderText("Bitte geben Sie einen Zahlenwert ein:");
+            dialog.setContentText("Zahlenwert:");
+
+            Optional<String> result = dialog.showAndWait();
+            result.ifPresent(value -> {
+                System.out.println("Eingegebener Zahlenwert: " + value);
+            });
+        });
     }
 
     public static void main(String[] args) {
         launch();
     }
 }
+
