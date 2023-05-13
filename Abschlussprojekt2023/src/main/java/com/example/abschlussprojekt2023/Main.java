@@ -4,17 +4,11 @@ import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.input.DataFormat;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -23,18 +17,21 @@ import java.io.File;
 import java.io.IOException;
 
 public class Main extends Application {
+    private static final DataFormat OBJECT_FORMAT = new DataFormat("application/x-java-serialized-object");
 
+    private VBox objects;
+    private VBox process;
+    private LoopStart obj_loopStart;
+    private LoopEnd obj_loopEnd;
 
-
+    private Humidity obj_hum;
+    private Temperature obj_temp;
+    private Delay obj_delay;
 
     @Override
     public void start(Stage stage) throws IOException {
 
-
-       
-       
-
-        VBox objects = new VBox();
+        objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
         HBox group = new HBox();
@@ -58,7 +55,6 @@ public class Main extends Application {
             fileChooser.setTitle("Datei öffnen");
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
-                
                 System.out.println("Datei ausgewählt: " + selectedFile.getName());
             }
         });
@@ -74,38 +70,25 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
-
-
-
-        
-
-        LoopStart obj_loopStart = new LoopStart();
+        obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
         obj_loopStart.makeDraggable(process);
-        
-        
 
-        LoopEnd obj_loopEnd = new LoopEnd();
+        obj_loopEnd = new LoopEnd();
         obj_loopEnd.initRectangle();
         obj_loopEnd.makeDraggable(process);
-   
 
-        Temperature obj_temp = new Temperature();
+        obj_temp = new Temperature();
         obj_temp.initRectangle();
         obj_temp.makeDraggable(process);
-     
 
-        Humidity obj_hum = new Humidity();
+        obj_hum = new Humidity();
         obj_hum.initRectangle();
         obj_hum.makeDraggable(process);
-     
 
-        Delay obj_delay = new Delay();
+        Objects obj_delay = new Delay();
         obj_delay.initRectangle();
         obj_delay.makeDraggable(process);
-    
-
-        
 
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
@@ -138,7 +121,15 @@ public class Main extends Application {
         stage.show();
 
     }
+        
+        
+        
+        
 
+        
+    
+
+  
     public static void main(String[] args) {
         launch();
     }

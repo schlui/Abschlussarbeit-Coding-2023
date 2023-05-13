@@ -1,11 +1,6 @@
 package com.example.abschlussprojekt2023;
 
-import java.util.HashMap;
-
-import javafx.geometry.Point2D;
-import javafx.scene.Cursor;
 import javafx.scene.Node;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -15,20 +10,39 @@ import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
+
+
+
+
 public class Objects {
 
     String name;
 
     protected Rectangle rectangle;
 
-    private double mouseDragOffsetX;
+    
 
     private double mouseDragOffsetY;
 
-    private static final DataFormat SERIALIZED_MIME_TYPE = new DataFormat("application/x-java-serialized-object");
+    private VBox process;
+    private VBox objects;
+
+   
+
+    
+
 
     public Objects() {
+            process = new VBox();
+            objects = new VBox();
 
+    }
+    public VBox getprocessBox() {
+            return process;
+    }
+
+    public VBox getobjectBox() {
+            return objects;
     }
 
     public void initRectangle() {
@@ -39,13 +53,13 @@ public class Objects {
         rectangle.setHeight(50);
         rectangle.setFill(Color.BLUE);
     }
-    public void makeDraggable(VBox targetVBox) {
+    public void makeDraggable(VBox objects) {
         this.getRectangle().setOnDragDetected(event -> {
             Dragboard db = this.getRectangle().startDragAndDrop(TransferMode.MOVE);
             ClipboardContent content = new ClipboardContent();
             content.put(DataFormat.PLAIN_TEXT, "Drag Me");
             db.setContent(content);
-            this.mouseDragOffsetX = event.getX();
+            event.getX();
             this.mouseDragOffsetY = event.getY();
             event.consume();
         });
@@ -71,7 +85,7 @@ public class Objects {
     
         this.getRectangle().setOnDragDone(event -> {
             if (event.getTransferMode() == TransferMode.MOVE) {
-                initRectangle();
+                
             }
             event.consume();
         });
@@ -87,11 +101,11 @@ public class Objects {
             while (node != null && !(node instanceof VBox)) {
                 node = node.getParent();
             }
-            VBox targetVBox = (VBox) node;
+            VBox process = (VBox) node;
       
-            if (targetVBox != null) {
-                // Move the rectangle to the target VBox
-                targetVBox.getChildren().add(this.getRectangle());
+            if (process != null) {
+                
+                process.getChildren().add(this.getRectangle());
                 this.getRectangle().setLayoutX(x);
                 this.getRectangle().setLayoutY(y);
             }
@@ -108,7 +122,15 @@ public class Objects {
     public void setRectangle(Rectangle rectangle) {
         this.rectangle = rectangle;
     }
+
+
+
+
+
+
+    
 }
+
 
 
 
