@@ -4,12 +4,13 @@ import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
+import javafx.scene.input.DataFormat;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -26,9 +27,18 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
+    private static final DataFormat OBJECT_FORMAT = new DataFormat("application/x-java-serialized-object");
+
+
+
 
     @Override
     public void start(Stage stage) throws IOException {
+
+
+       
+       
+
         VBox objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
@@ -53,6 +63,7 @@ public class Main extends Application {
             fileChooser.setTitle("Datei öffnen");
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
+                
                 System.out.println("Datei ausgewählt: " + selectedFile.getName());
             }
         });
@@ -68,25 +79,38 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
+
+
+
+        
+
         LoopStart obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
-        makeRectangleClickable(obj_loopStart.getRectangle(), process);
+        obj_loopStart.makeDraggable(process);
+        
+        
 
         LoopEnd obj_loopEnd = new LoopEnd();
         obj_loopEnd.initRectangle();
-        makeRectangleClickable(obj_loopEnd.getRectangle(), process);
+        obj_loopEnd.makeDraggable(process);
+   
 
         Temperature obj_temp = new Temperature();
         obj_temp.initRectangle();
-        makeRectangleClickable(obj_temp.getRectangle(), process);
+        obj_temp.makeDraggable(process);
+     
 
         Humidity obj_hum = new Humidity();
         obj_hum.initRectangle();
-        makeRectangleClickable(obj_hum.getRectangle(), process);
+        obj_hum.makeDraggable(process);
+     
 
         Delay obj_delay = new Delay();
         obj_delay.initRectangle();
-        makeRectangleClickable(obj_delay.getRectangle(), process);
+        obj_delay.makeDraggable(process);
+    
+
+        
 
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
@@ -132,7 +156,15 @@ public class Main extends Application {
             });
         });
     }
+        
+        
+        
+        
 
+        
+    
+
+  
     public static void main(String[] args) {
         launch();
     }
