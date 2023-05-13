@@ -58,7 +58,7 @@ public class Main extends Application {
             fileChooser.setTitle("Datei öffnen");
             File selectedFile = fileChooser.showOpenDialog(stage);
             if (selectedFile != null) {
-                // Hier kann man die Datei weiterverarbeiten
+                
                 System.out.println("Datei ausgewählt: " + selectedFile.getName());
             }
         });
