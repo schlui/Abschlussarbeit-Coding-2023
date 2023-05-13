@@ -1,10 +1,13 @@
 package com.example.abschlussprojekt2023;
 
+import javafx.scene.input.ClipboardContent;
+import javafx.scene.input.Dragboard;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.input.TransferMode;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 public class LoopStart extends Loops {
-
+    
     public LoopStart() {
         super();
     }
@@ -15,6 +18,6 @@ public class LoopStart extends Loops {
         rectangle.setFill(Color.DARKBLUE);
     }
 
-    
-
+ 
 }
+
