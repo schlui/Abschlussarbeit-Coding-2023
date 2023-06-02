@@ -2,8 +2,6 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
-
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -14,6 +12,8 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -24,15 +24,14 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
-import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
 
-   
     @Override
-    public void start(Stage stage) throws IOException {
+    public void start(Stage stage) {
         VBox objects = new VBox();
         VBox process = new VBox();
         VBox status = new VBox();
@@ -67,10 +66,13 @@ public class Main extends Application {
         toolbar.getItems().add(menuBar);
 
         // Buttons für Play, Pause und Reset
-        Button playButton = new Button("Play");
-        Button pauseButton = new Button("️Pause");
-        Button resetButton = new Button("️Reset");
+        Button playButton = new Button();
+        Button pauseButton = new Button();
+        Button resetButton = new Button();
 
+        playButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("play.png"))));
+        pauseButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("pause.png"))));
+        resetButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("reset.png"))));
 
         ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
         buttonToolbar.setPadding(new Insets(5));
@@ -100,7 +102,6 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
-
         // Objects
         LoopStart obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
@@ -128,14 +129,12 @@ public class Main extends Application {
         obj_delay.makeDraggable(process);
 
         // Status
-
         Label Temp_now = new Label("Temp:");
         Label Hum_now = new Label("Hum:");
         Label Status_now = new Label("Status:");
         Label Position_now = new Label("Position:");
 
-
-        //Areas 
+        // Areas
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
         objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
@@ -151,7 +150,7 @@ public class Main extends Application {
 
         status.setSpacing(10);
         status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90) );
+        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90));
         status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         status.setPadding(new Insets(10));
         status.getChildren().addAll(Status_now, Temp_now, Hum_now, Position_now);
@@ -165,12 +164,9 @@ public class Main extends Application {
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
         stage.setScene(scene);
 
-
         stage.setTitle("Abschlussprojekt 2023");
         stage.show();
     }
-
-
 
     private void makeRectangleClickable(Rectangle rectangle, VBox process) {
         rectangle.setOnMouseClicked(event -> {
@@ -182,15 +178,13 @@ public class Main extends Application {
 
                 Optional<String> result = dialog.showAndWait();
                 result.ifPresent(value -> {
-                    System.out.println("Eingegebener Zahlenwert: " + value); 
+                    System.out.println("Eingegebener Zahlenwert: " + value);
                 });
             }
         });
     }
 
-
     public static void main(String[] args) {
         launch();
     }
 }
-
