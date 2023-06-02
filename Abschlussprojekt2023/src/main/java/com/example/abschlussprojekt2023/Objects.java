@@ -11,9 +11,6 @@ import javafx.scene.input.Dragboard;
 import javafx.scene.input.TransferMode;
 
 
-
-
-
 public class Objects {
 
     String name;

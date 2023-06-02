@@ -11,7 +11,6 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
-import javafx.scene.input.DataFormat;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -22,16 +21,11 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-import javafx.scene.control.Button;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
-
-
 import java.io.File;
 import java.io.IOException;
 import java.util.Optional;
 
-public class Main extends Application {private static final DataFormat OBJECT_FORMAT = new DataFormat("application/x-java-serialized-object");
+public class Main extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         VBox objects = new VBox();
@@ -104,10 +98,10 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
         // Status
 
-        Label Temp_now = new Label("Temperatur:");
-        Label Hum_now = new Label("Humidity:");
-        Label time_now = new Label("Zeit:");
-        Label position_now = new Label("Position");
+        Label Temp_now = new Label("Temp:");
+        Label Hum_now = new Label("Hum:");
+        Label Status_now = new Label("Status:");
+        Label Position_now = new Label("Position:");
 
 
         //Areas 
@@ -126,9 +120,10 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
         status.setSpacing(10);
         status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.9));
+        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90) );
         status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         status.setPadding(new Insets(10));
+        status.getChildren().addAll(Status_now, Temp_now, Hum_now, Position_now);
 
         group.setSpacing(space);
         group.setPadding(new Insets(space));
@@ -136,8 +131,10 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
         group.setAlignment(Pos.CENTER);
 
         root.setCenter(group);
-
+        scene.setFill(Color.LIGHTBLUE);
         stage.setScene(scene);
+
+
         stage.setTitle("Abschlussprojekt 2023");
         stage.show();
     }
@@ -146,7 +143,7 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
     private void makeRectangleClickable(Rectangle rectangle, VBox process) {
         rectangle.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) { // Überprüfen, ob es ein Doppelklick ist
+            if (event.getClickCount() == 2) {
                 TextInputDialog dialog = new TextInputDialog();
                 dialog.setTitle("Zahlenwert eingeben");
                 dialog.setHeaderText("Bitte geben Sie einen Zahlenwert ein:");
@@ -154,8 +151,7 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
                 Optional<String> result = dialog.showAndWait();
                 result.ifPresent(value -> {
-                    System.out.println("Eingegebener Zahlenwert: " + value); //Ausgabe des eingegebenen Zahlenwertes
-                    // Hier kann man den Code einfügen, um das Rechteck zu öffnen
+                    System.out.println("Eingegebener Zahlenwert: " + value); 
                 });
             }
         });
