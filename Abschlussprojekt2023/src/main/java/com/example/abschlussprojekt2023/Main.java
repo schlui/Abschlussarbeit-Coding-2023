@@ -162,7 +162,7 @@ public class Main extends Application {
         group.setAlignment(Pos.CENTER);
 
         root.setCenter(group);
-        scene.setFill(Color.LIGHTBLUE);
+        root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
         stage.setScene(scene);
 
 
