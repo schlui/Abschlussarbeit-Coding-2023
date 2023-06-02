@@ -74,7 +74,8 @@ public class Main extends Application {
         pauseButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("pause.png"))));
         resetButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("reset.png"))));
 
-        ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
+        ToolBar buttonToolbar = new ToolBar();
+        buttonToolbar.getItems().addAll(playButton, pauseButton, resetButton);
         buttonToolbar.setPadding(new Insets(5));
 
         // Action Handler für die Buttons hinzufügen
@@ -94,7 +95,9 @@ public class Main extends Application {
         });
 
         // Die Buttons der unteren ToolBar hinzufügen
-        root.setBottom(buttonToolbar);
+        HBox buttonToolbarContainer = new HBox(buttonToolbar);
+        buttonToolbarContainer.setAlignment(Pos.CENTER);
+        root.setBottom(buttonToolbarContainer);
 
         root.setTop(toolbar);
 
