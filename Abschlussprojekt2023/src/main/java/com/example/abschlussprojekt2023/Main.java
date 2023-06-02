@@ -5,6 +5,7 @@ import javafx.beans.binding.DoubleBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
@@ -64,10 +65,13 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
         root.setTop(toolbar);
 
+
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
+
+        // Objects
         LoopStart obj_loopStart = new LoopStart();
         obj_loopStart.initRectangle();
         makeRectangleClickable(obj_loopStart.getRectangle(), process);
@@ -77,18 +81,28 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
         obj_loopEnd.initRectangle();
         makeRectangleClickable(obj_loopEnd.getRectangle(), process);
         obj_loopEnd.makeDraggable(process);
+
         Temperature obj_temp = new Temperature();
         obj_temp.initRectangle();
         makeRectangleClickable(obj_temp.getRectangle(), process);
         obj_temp.makeDraggable(process);
+
         Humidity obj_hum = new Humidity();
         obj_hum.initRectangle();
         makeRectangleClickable(obj_hum.getRectangle(), process);
         obj_temp.makeDraggable(process);
+
         Delay obj_delay = new Delay();
         obj_delay.initRectangle();
         makeRectangleClickable(obj_delay.getRectangle(), process);
         obj_delay.makeDraggable(process);
+
+        // Status
+
+        Lable Statustemp = new Label()
+
+
+        //Areas 
         objects.setSpacing(10);
         objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
         objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
