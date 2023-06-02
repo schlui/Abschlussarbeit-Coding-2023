@@ -2,6 +2,8 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
+
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -69,8 +71,9 @@ public class Main extends Application {
 
         // Buttons für Play, Pause und Reset
         Button playButton = new Button("Play");
-        Button pauseButton = new Button("Pause");
-        Button resetButton = new Button("Reset");
+        Button pauseButton = new Button("️Pause");
+        Button resetButton = new Button("️Reset");
+
 
         ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
         buttonToolbar.setPadding(new Insets(5));
