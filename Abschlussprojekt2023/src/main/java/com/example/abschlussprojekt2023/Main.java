@@ -104,7 +104,10 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
 
         // Status
 
-        Lable Statustemp = new Label()
+        Label Temp_now = new Label("Temperatur:");
+        Label Hum_now = new Label("Humidity:");
+        Label time_now = new Label("Zeit:");
+        Label position_now = new Label("Position");
 
 
         //Areas 
