@@ -21,6 +21,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -36,6 +40,7 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
         BorderPane root = new BorderPane();
 
         Scene scene = new Scene(root, 1200, 750, Color.LIGHTBLUE);
+
 
         // TOOLBAR
         ToolBar toolbar = new ToolBar();
@@ -72,7 +77,7 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
         obj_loopStart.initRectangle();
         makeRectangleClickable(obj_loopStart.getRectangle(), process);
         obj_loopStart.makeDraggable(process);
-        
+
         LoopEnd obj_loopEnd = new LoopEnd();
         obj_loopEnd.initRectangle();
         makeRectangleClickable(obj_loopEnd.getRectangle(), process);
@@ -120,19 +125,25 @@ public class Main extends Application {private static final DataFormat OBJECT_FO
         stage.show();
     }
 
-    private void makeRectangleClickable(Rectangle rectangle, VBox process) {
-        rectangle.setOnMouseReleased(event -> {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("Zahlenwert eingeben");
-            dialog.setHeaderText("Bitte geben Sie einen Zahlenwert ein:");
-            dialog.setContentText("Zahlenwert:");
 
-            Optional<String> result = dialog.showAndWait();
-            result.ifPresent(value -> {
-                System.out.println("Eingegebener Zahlenwert: " + value);
-            });
+
+    private void makeRectangleClickable(Rectangle rectangle, VBox process) {
+        rectangle.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) { // Überprüfen, ob es ein Doppelklick ist
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Zahlenwert eingeben");
+                dialog.setHeaderText("Bitte geben Sie einen Zahlenwert ein:");
+                dialog.setContentText("Zahlenwert:");
+
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(value -> {
+                    System.out.println("Eingegebener Zahlenwert: " + value); //Ausgabe des eingegebenen Zahlenwertes
+                    // Hier kann man den Code einfügen, um das Rechteck zu öffnen
+                });
+            }
         });
     }
+
 
     public static void main(String[] args) {
         launch();
