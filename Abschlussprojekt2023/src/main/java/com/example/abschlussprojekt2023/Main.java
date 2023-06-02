@@ -2,9 +2,12 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
+
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
@@ -26,6 +29,8 @@ import java.io.IOException;
 import java.util.Optional;
 
 public class Main extends Application {
+
+   
     @Override
     public void start(Stage stage) throws IOException {
         VBox objects = new VBox();
@@ -35,7 +40,6 @@ public class Main extends Application {
         BorderPane root = new BorderPane();
 
         Scene scene = new Scene(root, 1200, 750, Color.LIGHTBLUE);
-
 
         // TOOLBAR
         ToolBar toolbar = new ToolBar();
@@ -62,8 +66,35 @@ public class Main extends Application {
 
         toolbar.getItems().add(menuBar);
 
-        root.setTop(toolbar);
+        // Buttons für Play, Pause und Reset
+        Button playButton = new Button("Play");
+        Button pauseButton = new Button("️Pause");
+        Button resetButton = new Button("️Reset");
 
+
+        ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
+        buttonToolbar.setPadding(new Insets(5));
+
+        // Action Handler für die Buttons hinzufügen
+        playButton.setOnAction(e -> {
+            System.out.println("Play Button geklickt");
+            // Hier den Code für das Abspielen einfügen
+        });
+
+        pauseButton.setOnAction(e -> {
+            System.out.println("Pause Button geklickt");
+            // Hier den Code für das Anhalten einfügen
+        });
+
+        resetButton.setOnAction(e -> {
+            System.out.println("Reset Button geklickt");
+            // Hier den Code für das Zurücksetzen einfügen
+        });
+
+        // Die Buttons der unteren ToolBar hinzufügen
+        root.setBottom(buttonToolbar);
+
+        root.setTop(toolbar);
 
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);
         int space = spacePercent.intValue();
