@@ -74,6 +74,9 @@ public class Main extends Application {
         pauseButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("pause.png"))));
         resetButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("reset.png"))));
 
+        playButton.setStyle("-fx-background-color: rgba(0,128,0,0.4);");
+        resetButton.setStyle("-fx-background-color: rgba(255,0,0,0.4);");
+
         ToolBar buttonToolbar = new ToolBar();
         buttonToolbar.getItems().addAll(playButton, pauseButton, resetButton);
         buttonToolbar.setPadding(new Insets(5));
@@ -162,8 +165,6 @@ public class Main extends Application {
         group.setPadding(new Insets(space));
         group.getChildren().addAll(objects, process, status);
         group.setAlignment(Pos.CENTER);
-
-      
 
         root.setCenter(group);
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
