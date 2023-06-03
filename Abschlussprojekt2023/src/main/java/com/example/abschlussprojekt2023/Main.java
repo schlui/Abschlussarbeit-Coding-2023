@@ -163,6 +163,8 @@ public class Main extends Application {
         group.getChildren().addAll(objects, process, status);
         group.setAlignment(Pos.CENTER);
 
+        test
+
         root.setCenter(group);
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
         stage.setScene(scene);
