@@ -2,6 +2,8 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
+
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -10,10 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToolBar;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.BorderPane;
@@ -21,19 +20,20 @@ import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
-
 import java.io.File;
-import java.util.Optional;
+import java.io.IOException;
 
 public class Main extends Application {
 
+
     @Override
-    public void start(Stage stage) {
-        VBox objects = new VBox();
+    public void start(Stage stage) throws IOException {
         VBox process = new VBox();
+        VBox objects = new VBox();
+        Objects obj = new Objects(process, objects);
+
         VBox status = new VBox();
         HBox group = new HBox();
         BorderPane root = new BorderPane();
@@ -66,19 +66,12 @@ public class Main extends Application {
         toolbar.getItems().add(menuBar);
 
         // Buttons für Play, Pause und Reset
-        Button playButton = new Button();
-        Button pauseButton = new Button();
-        Button resetButton = new Button();
+        Button playButton = new Button("Play");
+        Button pauseButton = new Button("️Pause");
+        Button resetButton = new Button("️Reset");
 
-        playButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("play.png"))));
-        pauseButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("pause.png"))));
-        resetButton.setGraphic(new ImageView(new Image(getClass().getResourceAsStream("reset.png"))));
 
-        playButton.setStyle("-fx-background-color: rgba(0,128,0,0.4);");
-        resetButton.setStyle("-fx-background-color: rgba(255,0,0,0.4);");
-
-        ToolBar buttonToolbar = new ToolBar();
-        buttonToolbar.getItems().addAll(playButton, pauseButton, resetButton);
+        ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
         buttonToolbar.setPadding(new Insets(5));
 
         // Action Handler für die Buttons hinzufügen
@@ -98,9 +91,7 @@ public class Main extends Application {
         });
 
         // Die Buttons der unteren ToolBar hinzufügen
-        HBox buttonToolbarContainer = new HBox(buttonToolbar);
-        buttonToolbarContainer.setAlignment(Pos.CENTER);
-        root.setBottom(buttonToolbarContainer);
+        root.setBottom(buttonToolbar);
 
         root.setTop(toolbar);
 
@@ -108,89 +99,80 @@ public class Main extends Application {
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
 
+
         // Objects
-        LoopStart obj_loopStart = new LoopStart();
+        LoopStart obj_loopStart = new LoopStart(process, objects);
         obj_loopStart.initRectangle();
-        makeRectangleClickable(obj_loopStart.getRectangle(), process);
-        obj_loopStart.makeDraggable(process);
 
-        LoopEnd obj_loopEnd = new LoopEnd();
+
+
+        LoopEnd obj_loopEnd = new LoopEnd(process,objects);
         obj_loopEnd.initRectangle();
-        makeRectangleClickable(obj_loopEnd.getRectangle(), process);
-        obj_loopEnd.makeDraggable(process);
 
-        Temperature obj_temp = new Temperature();
+
+
+        Temperature obj_temp = new Temperature(process, objects);
         obj_temp.initRectangle();
-        makeRectangleClickable(obj_temp.getRectangle(), process);
-        obj_temp.makeDraggable(process);
 
-        Humidity obj_hum = new Humidity();
+
+
+        Humidity obj_hum = new Humidity(process, objects);
         obj_hum.initRectangle();
-        makeRectangleClickable(obj_hum.getRectangle(), process);
-        obj_temp.makeDraggable(process);
 
-        Delay obj_delay = new Delay();
+
+
+        Delay obj_delay = new Delay(process, objects);
         obj_delay.initRectangle();
-        makeRectangleClickable(obj_delay.getRectangle(), process);
-        obj_delay.makeDraggable(process);
+
 
         // Status
+
         Label Temp_now = new Label("Temp:");
         Label Hum_now = new Label("Hum:");
         Label Status_now = new Label("Status:");
         Label Position_now = new Label("Position:");
 
-        // Areas
-        objects.setSpacing(10);
-        objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
-        objects.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
-        objects.setPadding(new Insets(10));
-        objects.getChildren().addAll(obj_loopStart.getRectangle(), obj_loopEnd.getRectangle(), obj_temp.getRectangle(), obj_hum.getRectangle(), obj_delay.getRectangle());
 
-        process.setSpacing(10);
-        process.prefWidthProperty().bind(scene.widthProperty().multiply(0.5));
-        process.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
-        process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
-        process.setPadding(new Insets(10));
+        //Areas
+        obj.objects.setSpacing(10);
+        obj.objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
+        obj.objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
+        obj.objects.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
+        obj.objects.setPadding(new Insets(10));
+
+
+        obj.process.setSpacing(10);
+        obj.process.prefWidthProperty().bind(scene.widthProperty().multiply(0.5));
+        obj.process.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
+        obj.process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
+        obj.process.setPadding(new Insets(10));
 
         status.setSpacing(10);
         status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90));
+        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90) );
         status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         status.setPadding(new Insets(10));
         status.getChildren().addAll(Status_now, Temp_now, Hum_now, Position_now);
 
         group.setSpacing(space);
         group.setPadding(new Insets(space));
-        group.getChildren().addAll(objects, process, status);
+        group.getChildren().addAll(obj.objects, obj.process, status);
         group.setAlignment(Pos.CENTER);
 
         root.setCenter(group);
         root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
         stage.setScene(scene);
 
-        stage.setTitle("Abschlussprojekt 2023");
+
+        stage.setTitle("Abschlussprojekt 2023 KOPIE");
         stage.show();
     }
 
-    private void makeRectangleClickable(Rectangle rectangle, VBox process) {
-        rectangle.setOnMouseClicked(event -> {
-            if (event.getClickCount() == 2) {
-                TextInputDialog dialog = new TextInputDialog();
-                dialog.setTitle("Zahlenwert eingeben");
-                dialog.setHeaderText("Bitte geben Sie einen Zahlenwert ein:");
-                dialog.setContentText("Zahlenwert:");
 
-                Optional<String> result = dialog.showAndWait();
-                result.ifPresent(value -> {
-                    System.out.println("Eingegebener Zahlenwert: " + value);
-                });
-            }
-        });
-    }
+
 
     public static void main(String[] args) {
         launch();
     }
 }
+
