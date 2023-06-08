@@ -1,7 +1,9 @@
 package com.example.abschlussprojekt2023;
 
+import javafx.scene.input.Dragboard;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Rectangle;
 
 
 public class Humidity extends Set{
@@ -11,11 +13,17 @@ public class Humidity extends Set{
         super(process, objects);
     }
 
+
+
     @Override
     public void initRectangle() {
 
         super.initRectangle();
-        rectangle.setFill(Color.LIGHTGREEN);
-        droppedrectangle.setFill(Color.LIGHTBLUE);
+        rectangle.setFill(Color.BLUEVIOLET);
+        droppedrectangle.setFill(Color.BLUEVIOLET);
+       
+
+        
+
     }
 }

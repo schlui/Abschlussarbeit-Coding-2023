@@ -29,6 +29,9 @@ public class Objects extends Node {
         this.objects =  objects;
     }
 
+    /**
+     * 
+     */
     public void initRectangle() {
 
         rectangle = new Rectangle();
@@ -36,9 +39,7 @@ public class Objects extends Node {
         rectangle.setY(50);
         rectangle.setWidth(200);
         rectangle.setHeight(50);
-        rectangle.setFill(Color.BLUE);
-        droppedrectangle = new Rectangle();
-
+        
 
         objects.getChildren().add(rectangle);
 
@@ -61,11 +62,10 @@ public class Objects extends Node {
             Dragboard db = event.getDragboard();
             boolean success = false;
             if (db != null) {
-                Rectangle droppedRectangle = new Rectangle();
-                droppedRectangle.setWidth(rectangle.getWidth());
-                droppedRectangle.setHeight(rectangle.getHeight());
-                droppedRectangle.setFill(rectangle.getFill());
-                process.getChildren().add(droppedRectangle);
+                droppedrectangle = new Rectangle();
+                droppedrectangle.setWidth(rectangle.getWidth());
+                droppedrectangle.setHeight(rectangle.getHeight());
+                process.getChildren().add(droppedrectangle);
                 success = true;
             }
             event.setDropCompleted(success);

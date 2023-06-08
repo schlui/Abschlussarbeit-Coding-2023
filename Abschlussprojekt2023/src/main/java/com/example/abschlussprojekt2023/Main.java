@@ -36,6 +36,8 @@ public class  Main extends Application {
         VBox objects = new VBox();
         Objects obj = new Objects(process, objects);
 
+        
+
         VBox status = new VBox();
         HBox group = new HBox();
         BorderPane root = new BorderPane();
