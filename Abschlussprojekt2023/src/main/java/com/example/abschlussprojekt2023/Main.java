@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
-public class Main extends Application {
+public class  Main extends Application {
 
 
     @Override
@@ -164,7 +164,7 @@ public class Main extends Application {
         stage.setScene(scene);
 
 
-        stage.setTitle("Abschlussprojekt 2023 KOPIE");
+        stage.setTitle("Abschlussprojekt 2023");
         stage.show();
     }
 
