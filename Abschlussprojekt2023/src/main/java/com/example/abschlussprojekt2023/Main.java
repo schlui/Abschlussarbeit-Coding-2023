@@ -130,10 +130,15 @@ public class  Main extends Application {
 
         // Status
 
-        Label Temp_now = new Label("Temp:");
-        Label Hum_now = new Label("Hum:");
-        Label Status_now = new Label("Status:");
-        Label Position_now = new Label("Position:");
+        Label Temp = new Label("Temp:");
+        Label temp_now = new Label();
+        Label Hum = new Label("Hum:");
+        Label hum_now = new Label ();
+        Label Status = new Label("Status:");
+        Label status_now = new Label();
+        Label Position = new Label("Position:");
+        Label pos_now = new Label();
+        
 
 
         //Areas
@@ -157,7 +162,7 @@ public class  Main extends Application {
         status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90) );
         status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         status.setPadding(new Insets(10));
-        status.getChildren().addAll(Status_now, Temp_now, Hum_now, Position_now);
+        status.getChildren().addAll(Status, Temp, Hum, Position);
 
         group.setSpacing(space);
         group.setPadding(new Insets(space));
