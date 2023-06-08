@@ -15,10 +15,10 @@ public class LoopStart extends Loops {
 
         super.initRectangle();
         rectangle.setFill(Color.DARKBLUE);
+        droppedrectangle.setFill(Color.DARKBLUE);
     }
 
-    public void setOnMousePressed(Object object) {
-    }
+
 
 
 }

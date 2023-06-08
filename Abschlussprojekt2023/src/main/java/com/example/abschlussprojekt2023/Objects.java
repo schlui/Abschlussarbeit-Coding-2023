@@ -17,6 +17,7 @@ import javafx.scene.input.TransferMode;
 public class Objects extends Node {
 
     protected Rectangle rectangle;
+    protected Rectangle droppedrectangle;
 
     protected  VBox process;
     protected  VBox objects;
@@ -36,6 +37,7 @@ public class Objects extends Node {
         rectangle.setWidth(200);
         rectangle.setHeight(50);
         rectangle.setFill(Color.BLUE);
+        droppedrectangle = new Rectangle();
 
 
         objects.getChildren().add(rectangle);
@@ -60,8 +62,9 @@ public class Objects extends Node {
             boolean success = false;
             if (db != null) {
                 Rectangle droppedRectangle = new Rectangle();
-                droppedRectangle.setWidth(200);
-                droppedRectangle.setHeight(50);
+                droppedRectangle.setWidth(rectangle.getWidth());
+                droppedRectangle.setHeight(rectangle.getHeight());
+                droppedRectangle.setFill(rectangle.getFill());
                 process.getChildren().add(droppedRectangle);
                 success = true;
             }

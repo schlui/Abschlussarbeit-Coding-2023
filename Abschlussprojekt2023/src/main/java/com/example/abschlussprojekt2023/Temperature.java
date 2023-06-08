@@ -15,6 +15,7 @@ public class Temperature extends Set {
 
         super.initRectangle();
         rectangle.setFill(Color.DARKGREEN);
+        droppedrectangle.setFill(Color.DARKGREEN);
     }
 
 }

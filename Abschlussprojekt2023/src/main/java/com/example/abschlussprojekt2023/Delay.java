@@ -18,6 +18,7 @@ public class Delay extends Objects{
 
         super.initRectangle();
         rectangle.setFill(Color.PINK);
+        droppedrectangle.setFill(Color.PINK);
 
 
     }

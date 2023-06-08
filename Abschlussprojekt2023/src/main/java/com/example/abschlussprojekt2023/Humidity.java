@@ -16,5 +16,6 @@ public class Humidity extends Set{
 
         super.initRectangle();
         rectangle.setFill(Color.LIGHTGREEN);
+        droppedrectangle.setFill(Color.LIGHTBLUE);
     }
 }

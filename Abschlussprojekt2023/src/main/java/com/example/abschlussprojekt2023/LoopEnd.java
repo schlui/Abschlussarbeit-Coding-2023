@@ -15,6 +15,7 @@ public class LoopEnd extends Loops {
 
         super.initRectangle();
         rectangle.setFill(Color.LIGHTBLUE);
+        droppedrectangle.setFill(Color.LIGHTBLUE);
     }
 
 

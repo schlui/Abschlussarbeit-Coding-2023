@@ -6,6 +6,8 @@ import javafx.beans.binding.DoubleBinding;
 
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.geometry.VPos;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -71,8 +73,9 @@ public class  Main extends Application {
         Button resetButton = new Button("️Reset");
 
 
-        ToolBar buttonToolbar = new ToolBar(playButton, pauseButton, resetButton);
-        buttonToolbar.setPadding(new Insets(5));
+        HBox buttonbox = new HBox(playButton, pauseButton, resetButton);
+        buttonbox.setPadding(new Insets(5));
+
 
         // Action Handler für die Buttons hinzufügen
         playButton.setOnAction(e -> {
@@ -91,7 +94,7 @@ public class  Main extends Application {
         });
 
         // Die Buttons der unteren ToolBar hinzufügen
-        root.setBottom(buttonToolbar);
+
 
         root.setTop(toolbar);
 
@@ -146,6 +149,8 @@ public class  Main extends Application {
         obj.process.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
         obj.process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
         obj.process.setPadding(new Insets(10));
+        obj.process.getChildren().addAll(buttonbox);
+        buttonbox.setAlignment(Pos.BOTTOM_CENTER);
 
         status.setSpacing(10);
         status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
