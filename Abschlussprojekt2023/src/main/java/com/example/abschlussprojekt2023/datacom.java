@@ -20,7 +20,33 @@ public class datacom {
     private static final double CORROSION_PROTECTION_TEMPERATURE = 60.0;
     private static final double CORROSION_PROTECTION_HUMIDITY = 10.0;
 
+    private ModbusTCPMaster client;
+    private int bytesRead;
+
+    public datacom(String host){
+        System.out.println("Constructor of FDM_ClimateChamberMP (" + host + ") Started");
+        int idSlave = 255;
+        bytesRead = 2;
+
+        try {
+            client = new ModbusTCPMaster(host, idSlave, true);
+            client.setAutoOpen(true);
+            client.setAutoClose(true);
+        } catch (Exception e) {
+            System.out.println("NOT CONNECTED");
+            System.out.println("Application will be terminated ... NOT CONNECTED!");
+            System.exit( );
+        }
+        System.out.println("Constructor of FDM_ClimateChamberMP (" + host + ") Finished!");
+    }
     
+   public void convertReadingData(int data) {
+        if(data >LIMIT_BINARY_COMPLEMENT){
+            data = -(MAX_BINARY_VALUE - data +1);
+        }
+        floate result = data / 10; 
+        return result; 
+   }
 
 
 
