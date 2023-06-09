@@ -17,8 +17,8 @@ public class Delay extends Objects{
     public void initRectangle() {
 
         super.initRectangle();
-        rectangle.setFill(Color.PINK);
-        droppedrectangle.setFill(Color.PINK);
+        rectangle.setFill(Color.GOLD);
+        droppedrectangle.setFill(Color.GOLD);
 
 
     }
