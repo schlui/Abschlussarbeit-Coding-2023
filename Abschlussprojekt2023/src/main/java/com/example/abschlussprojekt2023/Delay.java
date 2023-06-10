@@ -20,7 +20,7 @@ public class Delay extends Objects{
         rectangle.setFill(Color.GOLD);
         droppedrectangle.setFill(Color.GOLD);
 
-
+        
     }
 }
 
