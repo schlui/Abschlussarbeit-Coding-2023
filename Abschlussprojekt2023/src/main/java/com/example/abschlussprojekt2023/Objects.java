@@ -30,14 +30,12 @@ public class Objects extends Node {
 
 
     public Objects(VBox process, VBox objects) {
-        objects = process;
+
         this.process = process;
-        this.objects =  objects;
+        this.objects  = objects;
     }
 
-    /**
-     * 
-     */
+
     public void initRectangle() {
 
         rectangle = new Rectangle();
@@ -68,9 +66,11 @@ public class Objects extends Node {
             Dragboard db = event.getDragboard();
             boolean success = false;
             if (db != null) {
+                droppedrectangle = new Rectangle();
                 droppedrectangle.setWidth(rectangle.getWidth());
                 droppedrectangle.setHeight(rectangle.getHeight());
-                process.getChildren().add(droppedrectangle);
+                droppedrectangle.setFill(rectangle.getFill());
+                process.getChildren().addAll(droppedrectangle);
                 success = true;
             }
             event.setDropCompleted(success);

@@ -22,7 +22,7 @@ public class Humidity extends Set{
         rectangle.setFill(Color.BLUEVIOLET);
         droppedrectangle.setFill(Color.BLUEVIOLET);
        
-
+        
         
 
     }
