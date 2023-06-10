@@ -105,7 +105,7 @@ public class  Main extends Application {
 
         // Objects
         LoopStart obj_loopStart = new LoopStart(process, objects);
-        obj_loopStart.x();
+        obj_loopStart.initRectangle();
 
 
 
