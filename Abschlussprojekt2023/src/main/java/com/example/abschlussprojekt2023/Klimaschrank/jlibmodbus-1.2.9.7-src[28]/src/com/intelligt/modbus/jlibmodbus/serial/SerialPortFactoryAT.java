@@ -3,7 +3,6 @@ package com.intelligt.modbus.jlibmodbus.serial;
 import com.google.android.things.AndroidThings;
 import com.google.android.things.pio.PeripheralManager;
 
-import java.util.Arrays;
 import java.util.List;
 
 /*

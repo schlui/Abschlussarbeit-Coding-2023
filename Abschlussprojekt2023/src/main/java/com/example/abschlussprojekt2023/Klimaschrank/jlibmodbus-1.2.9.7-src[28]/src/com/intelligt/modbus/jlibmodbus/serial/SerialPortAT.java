@@ -3,7 +3,6 @@ package com.intelligt.modbus.jlibmodbus.serial;
 import com.google.android.things.pio.PeripheralManager;
 import com.google.android.things.pio.UartDevice;
 import com.intelligt.modbus.jlibmodbus.Modbus;
-import com.intelligt.modbus.jlibmodbus.utils.ByteFifo;
 
 import java.io.IOException;
 

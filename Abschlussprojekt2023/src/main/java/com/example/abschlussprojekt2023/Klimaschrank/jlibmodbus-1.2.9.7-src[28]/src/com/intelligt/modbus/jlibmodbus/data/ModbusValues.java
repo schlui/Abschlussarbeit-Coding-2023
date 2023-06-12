@@ -4,7 +4,6 @@ import com.intelligt.modbus.jlibmodbus.Modbus;
 import com.intelligt.modbus.jlibmodbus.exception.IllegalDataAddressException;
 import com.intelligt.modbus.jlibmodbus.exception.IllegalDataValueException;
 
-import java.util.ConcurrentModificationException;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 import java.util.Observable;

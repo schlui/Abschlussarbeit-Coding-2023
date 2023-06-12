@@ -1,6 +1,5 @@
 package com.intelligt.modbus.jlibmodbus.serial;
 
-import com.intelligt.modbus.jlibmodbus.Modbus;
 import purejavacomm.CommPortIdentifier;
 
 import java.util.ArrayList;
