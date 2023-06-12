@@ -3,6 +3,7 @@ package com.example.abschlussprojekt2023;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
+
 public class Temperature extends Set {
 
 
@@ -15,7 +16,9 @@ public class Temperature extends Set {
 
         super.initRectangle();
         rectangle.setFill(Color.DARKGREEN);
-        droppedrectangle.setFill(Color.DARKGREEN);
+        droppedrectangle.setFill(rectangle.getFill());
+      
     }
 
+    
 }

@@ -4,6 +4,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
 
+
 public class Delay extends Objects{
 
 
@@ -19,8 +20,12 @@ public class Delay extends Objects{
         super.initRectangle();
         rectangle.setFill(Color.GOLD);
         droppedrectangle.setFill(Color.GOLD);
+        process.getChildren().addAll(droppedrectangle);
 
         
     }
+
+
+
 }
 

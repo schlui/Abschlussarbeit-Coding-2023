@@ -13,7 +13,7 @@ import javafx.scene.input.ClipboardContent;
 import javafx.scene.input.DragEvent;
 import javafx.scene.input.Dragboard;
 import javafx.scene.input.MouseButton;
-import javafx.scene.input.MouseEvent;
+
 import javafx.scene.input.TransferMode;
 
 
@@ -46,49 +46,12 @@ public class Objects extends Node {
 
         
         objects.getChildren().add(rectangle);
+        
 
-        rectangle.setOnDragDetected(event -> {
-            Dragboard db = rectangle.startDragAndDrop(TransferMode.ANY);
-            ClipboardContent content = new ClipboardContent();
-            content.putString(rectangle.getStyle());
-            db.setContent(content);
-            event.consume();
-        });
+        
 
-        process.setOnDragOver(event -> {
-            if (event.getGestureSource() != process ) {
-                event.acceptTransferModes(TransferMode.COPY_OR_MOVE);
-            }
-            event.consume();
-        });
-
-        process.setOnDragDropped(event -> {
-            Dragboard db = event.getDragboard();
-            boolean success = false;
-            if (db != null) {
-                droppedrectangle = new Rectangle();
-                droppedrectangle.setWidth(rectangle.getWidth());
-                droppedrectangle.setHeight(rectangle.getHeight());
-                droppedrectangle.setFill(rectangle.getFill());
-                process.getChildren().addAll(droppedrectangle);
-                success = true;
-            }
-            event.setDropCompleted(success);
-            event.consume();
-
-       
-
-        rectangle.setOnDragDone(DragEvent::consume);
-
-        rectangle.setOnMouseClicked(e -> {
-            if(e.getButton() == MouseButton.PRIMARY && e.getClickCount() == 2) {
-                openInputDialog();
-            }
-        });
-
-        });
-    }
-
+        }
+    
 
    
 
@@ -141,9 +104,10 @@ public class Objects extends Node {
         alert.setContentText(content);
         alert.showAndWait();
     }
-
-
-
-
 }
+
+
+
+
+
 
