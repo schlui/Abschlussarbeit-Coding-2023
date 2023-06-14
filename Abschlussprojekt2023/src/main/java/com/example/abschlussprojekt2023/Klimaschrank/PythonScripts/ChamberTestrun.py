@@ -9,10 +9,7 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-from TestBench.configuration import *;
 from TestFramework.src.libraries_common import *;
-from TestFramework.src.libraries_devices import *;
-
 
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 # create logfile: name containing:

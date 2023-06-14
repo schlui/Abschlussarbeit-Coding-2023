@@ -10,13 +10,11 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 
-from pyModbusTCP.client import ModbusClient;
-import time;
 import sys;
+import time;
+from pyModbusTCP.client import ModbusClient;
 
-from ..libraries_common import *;
 from ..libraries_devices import *;
-
 
 MB_ADDR_TEMPERATURE_PV              = 1000;
 MB_ADDR_HUMIDITY_PV                 = 1002;

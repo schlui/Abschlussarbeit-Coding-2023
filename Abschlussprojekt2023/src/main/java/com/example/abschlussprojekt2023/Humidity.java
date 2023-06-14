@@ -3,8 +3,7 @@ package com.example.abschlussprojekt2023;
 import javafx.scene.input.*;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
-import javafx.scene.shape.Rectangle;
+
 
 
 public class Humidity extends Set{

@@ -2,7 +2,7 @@ package com.example.abschlussprojekt2023;
 
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
+
 
 public class LoopEnd extends Loops {
 
