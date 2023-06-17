@@ -1,13 +1,11 @@
 import org.python.util.PythonInterpreter;
 import org.python.core.PyInstance;
 
-
 public class Python_Interpreter {
-
-    private PythonInterpreter interpreter;
+    private Python_Interpreter interpreter;
 
     public Python_Interpreter() {
-        interpreter = new PythonInterpreter();
+        interpreter = new Python_Interpreter();
     }
 
     public void execfile(String fileName) {
@@ -15,7 +13,7 @@ public class Python_Interpreter {
     }
 
     public PyInstance createClass(String className, String opts) {
-        return (PyInstance) interpreter.eval(className, + "(" + opts + ")");
+        return (PyInstance) interpreter.eval(className + "(" + opts + ")");
     }
 
     public static void main(String[] args) {
@@ -23,27 +21,26 @@ public class Python_Interpreter {
 
         ie.execfile("FDM_ClimateChamber.py");
 
-  
-      PyInstance hello = ie.createClass("FDM_ClimateChamberClassMP", "None");  
+        PyInstance hello = ie.createClass("FDM_ClimateChamberClassMP", "None");
 
-      hello.invoke("run");  
+        hello.invoke("run");
 
         PyInstance FDM = ie.createClass("FDM_ClimateChamberClassMP", "object");
-        
-       /* 
+
+        /*
         FDM.invoke("convertReadingData( data: int )");
-        
+
         FDM.invoke("assertLimits( data )");
 
         FDM.invoke("getChamberTemperaturePV");
-        
+
         FDM.invoke("getChamberTemperaturePV_NoLog");
 
         FDM.invoke("setChamberTemperatureSP( temperature )");
 
         FDM.invoke("getChamberTemperatureSP( self )");
 
-        FDM.invoke("getChamberHumidityPV ");
+        FDM.invoke("getChamberHumidityPV");
 
         FDM.invoke("getChamberHumidityPV_NoLog( self )");
 
@@ -72,9 +69,6 @@ public class Python_Interpreter {
         FDM.invoke("waitChamberHumidityPV_Event( self, SP )");
 
         FDM.invoke("setCorrosionProtection( self )");
-
         */
-
-
     }
 }

@@ -2,8 +2,6 @@ package com.example.abschlussprojekt2023;
 
 import javafx.application.Application;
 import javafx.beans.binding.DoubleBinding;
-
-
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -22,24 +20,20 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+
 import java.io.File;
 import java.io.IOException;
 
-public class  Main extends Application {
+public class Main extends Application {
 
+    private Python_Interpreter python_interpreter;
 
     @Override
     public void start(Stage stage) throws IOException {
         VBox process = new VBox();
         VBox objects = new VBox();
         Objects obj = new Objects(process, objects);
-        Python_Interpreter py_Ip = new Python_Interpreter();
-
-
-
-       
-
-        
+        python_interpreter = new Python_Interpreter();
 
         VBox status = new VBox();
         HBox group = new HBox();
@@ -86,7 +80,6 @@ public class  Main extends Application {
         playButton.setOnAction(e -> {
             System.out.println("Play Button geklickt");
             // Code für Play:
-
         });
 
         pauseButton.setOnAction(e -> {
@@ -99,9 +92,6 @@ public class  Main extends Application {
             // Code für reset:
         });
 
-       
-
-
         root.setTop(toolbar);
 
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);
@@ -113,86 +103,44 @@ public class  Main extends Application {
         LoopStart obj_loopStart = new LoopStart(process, objects);
         obj_loopStart.initRectangle();
 
-
-
-        LoopEnd obj_loopEnd = new LoopEnd(process,objects);
+        LoopEnd obj_loopEnd = new LoopEnd(process, objects);
         obj_loopEnd.initRectangle();
-
-
 
         Temperature obj_temp = new Temperature(process, objects);
         obj_temp.initRectangle();
 
-
-
         Humidity obj_hum = new Humidity(process, objects);
         obj_hum.initRectangle();
-
-
 
         Delay obj_delay = new Delay(process, objects);
         obj_delay.initRectangle();
 
+        Spray obj_spray = new Spray(process, objects);
+        obj_spray.initRectangle();
 
-        // Status
+        process.setPadding(new Insets(space));
+        process.setSpacing(space);
 
-        float temp_now = ;
-        float hum_now = py_Ip.getChamberHumidityPV_NoLog;
-        
+        objects.setPadding(new Insets(space));
+        objects.setSpacing(space);
 
-        Label Temp = new Label("Temp:");
-        Label temp_now_Label = new Label();
-        Label Hum = new Label("Hum:");
-        Label hum_now_Label = new Label ();
-        Label Status = new Label("Status:");
-        Label status_now = new Label();
-        Label Position = new Label("Position:");
-        Label pos_now = new Label();
-        
+        process.setBackground(new Background(new BackgroundFill(Color.WHITE, radii, Insets.EMPTY)));
+        objects.setBackground(new Background(new BackgroundFill(Color.WHITE, radii, Insets.EMPTY)));
 
+        group.setAlignment(Pos.TOP_CENTER);
+        group.getChildren().addAll(process, objects);
 
-        //Areas
-        obj.objects.setSpacing(10);
-        obj.objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        obj.objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
-        obj.objects.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
-        obj.objects.setPadding(new Insets(10));
+        status.getChildren().add(group);
 
+        root.setCenter(status);
+        root.setBottom(buttonbox);
 
-        obj.process.setSpacing(10);
-        obj.process.prefWidthProperty().bind(scene.widthProperty().multiply(0.5));
-        obj.process.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
-        obj.process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
-        obj.process.setPadding(new Insets(10));
-        obj.process.getChildren().addAll(buttonbox);
-        buttonbox.setAlignment(Pos.BOTTOM_CENTER);
-
-        status.setSpacing(10);
-        status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
-        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90) );
-        status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
-        status.setPadding(new Insets(10));
-        status.getChildren().addAll(Status, Temp, Hum, Position);
-
-        group.setSpacing(space);
-        group.setPadding(new Insets(space));
-        group.getChildren().addAll(obj.objects, obj.process, status);
-        group.setAlignment(Pos.CENTER);
-
-        root.setCenter(group);
-        root.setBackground(new Background(new BackgroundFill(Color.LIGHTBLUE, radii, null)));
         stage.setScene(scene);
-
-
         stage.setTitle("Abschlussprojekt 2023");
         stage.show();
     }
 
-
-
-
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }
-
