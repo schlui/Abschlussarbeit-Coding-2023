@@ -135,7 +135,7 @@ public class  Main extends Application {
 
         // Status
 
-        float temp_now = ;
+        float temp_now =0 ;
         float hum_now = py_Ip.getChamberHumidityPV_NoLog;
         
 
