@@ -75,6 +75,8 @@ public class Objects extends Node {
 
         TextField inputField = new TextField();
         dialog.getDialogPane().setContent(inputField);
+        String x = inputField.getText();
+        int new_int = Integer.parseInt(x);
 
         dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
         dialog.setResultConverter(buttonType -> {

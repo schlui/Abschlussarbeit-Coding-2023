@@ -21,7 +21,15 @@ public class Delay extends Objects{
         rectangle.setFill(Color.GOLD);
         droppedrectangle.setFill(Color.GOLD);
         process.getChildren().addAll(droppedrectangle);
-
+        
+    
+        
+    }
+    @Override
+    public void openInputDialog(){
+        super.openInputDialog();
+        dialog.setTitle("Zeit eingeben in Minuten");
+        dialog.setHeaderText("Zeit in Minuten:");
         
     }
 

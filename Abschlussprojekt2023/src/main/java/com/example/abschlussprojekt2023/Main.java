@@ -33,6 +33,11 @@ public class  Main extends Application {
         VBox process = new VBox();
         VBox objects = new VBox();
         Objects obj = new Objects(process, objects);
+        Python_Interpreter py_Ip = new Python_Interpreter();
+
+
+
+       
 
         
 
@@ -93,7 +98,7 @@ public class  Main extends Application {
             // Hier den Code für das Zurücksetzen einfügen
         });
 
-        // Die Buttons der unteren ToolBar hinzufügen
+       
 
 
         root.setTop(toolbar);
@@ -130,10 +135,14 @@ public class  Main extends Application {
 
         // Status
 
+        float temp_now = ;
+        float hum_now = py_Ip.getChamberHumidityPV_NoLog;
+        
+
         Label Temp = new Label("Temp:");
-        Label temp_now = new Label();
+        Label temp_now_Label = new Label();
         Label Hum = new Label("Hum:");
-        Label hum_now = new Label ();
+        Label hum_now_Label = new Label ();
         Label Status = new Label("Status:");
         Label status_now = new Label();
         Label Position = new Label("Position:");
