@@ -85,17 +85,17 @@ public class  Main extends Application {
         // Action Handler für die Buttons hinzufügen
         playButton.setOnAction(e -> {
             System.out.println("Play Button geklickt");
-            // Hier den Code für das Abspielen einfügen
+            // Code für start:
         });
 
         pauseButton.setOnAction(e -> {
             System.out.println("Pause Button geklickt");
-            // Hier den Code für das Anhalten einfügen
+            // Code für Pause:
         });
 
         resetButton.setOnAction(e -> {
             System.out.println("Reset Button geklickt");
-            // Hier den Code für das Zurücksetzen einfügen
+            // Code für reset:
         });
 
        
