@@ -5,18 +5,8 @@ import javafx.beans.binding.DoubleBinding;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Menu;
-import javafx.scene.control.MenuBar;
-import javafx.scene.control.MenuItem;
-import javafx.scene.control.ToolBar;
-import javafx.scene.layout.Background;
-import javafx.scene.layout.BackgroundFill;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.CornerRadii;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.control.*;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -26,20 +16,18 @@ import java.io.IOException;
 
 public class Main extends Application {
 
-    private Python_Interpreter python_interpreter;
-
     @Override
     public void start(Stage stage) throws IOException {
         VBox process = new VBox();
         VBox objects = new VBox();
         Objects obj = new Objects(process, objects);
-        python_interpreter = new Python_Interpreter();
+        // Python_Interpreter py_Ip = new Python_Interpreter();
 
         VBox status = new VBox();
         HBox group = new HBox();
         BorderPane root = new BorderPane();
 
-        Scene scene = new Scene(root, 1200, 750, Color.LIGHTBLUE);
+        Scene scene = new Scene(root, 1200, 750, Color.LIGHTGREY);
 
         // TOOLBAR
         ToolBar toolbar = new ToolBar();
@@ -71,25 +59,21 @@ public class Main extends Application {
         Button pauseButton = new Button("️Pause");
         Button resetButton = new Button("️Reset");
 
-
         HBox buttonbox = new HBox(playButton, pauseButton, resetButton);
         buttonbox.setPadding(new Insets(5));
 
-
-        // Action Handler für die Buttons hinzufügen
         playButton.setOnAction(e -> {
-            System.out.println("Play Button geklickt");
-            // Code für Play:
+
+            // py_Ip.FDM.invoke("switchOnChamberManualRun_NoLog");
         });
 
         pauseButton.setOnAction(e -> {
-            System.out.println("Pause Button geklickt");
-            // Code für Pause:
+            // py_Id.FDM.invoke("switchOffChamberManualRun");
         });
 
         resetButton.setOnAction(e -> {
-            System.out.println("Reset Button geklickt");
-            // Code für reset:
+            process.getChildren().removeAll(process.getChildren().filtered(element -> !element.equals(buttonbox)));
+            // py_Id.FDM.invoke("switchOffChamberManualRun");
         });
 
         root.setTop(toolbar);
@@ -97,7 +81,6 @@ public class Main extends Application {
         DoubleBinding spacePercent = scene.widthProperty().multiply(0.025);
         int space = spacePercent.intValue();
         CornerRadii radii = new CornerRadii(5);
-
 
         // Objects
         LoopStart obj_loopStart = new LoopStart(process, objects);
@@ -115,32 +98,62 @@ public class Main extends Application {
         Delay obj_delay = new Delay(process, objects);
         obj_delay.initRectangle();
 
-        Spray obj_spray = new Spray(process, objects);
-        obj_spray.initRectangle();
+        // Status
 
-        process.setPadding(new Insets(space));
-        process.setSpacing(space);
+        /*
+         * float temp_now = py_Id.FDM.invoke("getChamberTemperaturePV_NoLog");
+         * float hum_now = py_Id.FDM.invoke("getChamberHumidityPV_NoLog");
+         *
+         */
+        Label Temp = new Label("Temp:");
+        // Label temp_now_Label = new Label();
+        Label Hum = new Label("Hum:");
+        // Label hum_now_Label = new Label();
+        Label Status = new Label("Status:");
+        // Label status_now = new Label();
+        Label Position = new Label("Position:");
+        // Label pos_now = new Label();
 
-        objects.setPadding(new Insets(space));
-        objects.setSpacing(space);
+        // Areas
+        obj.objects.setSpacing(10);
+        obj.objects.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
+        obj.objects.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
+        obj.objects.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
+        obj.objects.setPadding(new Insets(10));
 
-        process.setBackground(new Background(new BackgroundFill(Color.WHITE, radii, Insets.EMPTY)));
-        objects.setBackground(new Background(new BackgroundFill(Color.WHITE, radii, Insets.EMPTY)));
+        obj.process.setSpacing(10);
+        obj.process.prefWidthProperty().bind(scene.widthProperty().multiply(0.5));
+        obj.process.prefHeightProperty().bind(scene.heightProperty().multiply(0.95));
+        obj.process.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
+        obj.process.setPadding(new Insets(10));
+        obj.process.getChildren().addAll(buttonbox);
+        buttonbox.setAlignment(Pos.BOTTOM_CENTER);
 
-        group.setAlignment(Pos.TOP_CENTER);
-        group.getChildren().addAll(process, objects);
+        ScrollPane scrollPane = new ScrollPane();
+        scrollPane.setContent(obj.process);
+        scrollPane.setFitToWidth(true);
 
-        status.getChildren().add(group);
+        status.setSpacing(10);
+        status.prefWidthProperty().bind(scene.widthProperty().multiply(0.20));
+        status.prefHeightProperty().bind(scene.heightProperty().multiply(0.90));
+        status.setBackground(new Background(new BackgroundFill(Color.GREY, radii, null)));
+        status.setPadding(new Insets(10));
+        status.getChildren().addAll(Status, Temp, Hum, Position);
 
-        root.setCenter(status);
-        root.setBottom(buttonbox);
+        group.setSpacing(space);
+        group.setPadding(new Insets(space));
+        group.getChildren().addAll(objects, scrollPane, status);
+        group.setAlignment(Pos.CENTER);
 
+        root.setCenter(group);
+        root.setBackground(new Background(new BackgroundFill(Color.BLUE, radii, null)));
         stage.setScene(scene);
+
         stage.setTitle("Abschlussprojekt 2023");
         stage.show();
     }
 
     public static void main(String[] args) {
-        launch(args);
+        launch();
     }
 }

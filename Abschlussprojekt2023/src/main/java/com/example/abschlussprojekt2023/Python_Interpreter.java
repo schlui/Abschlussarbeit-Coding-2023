@@ -1,11 +1,15 @@
-import org.python.util.PythonInterpreter;
+package com.example.abschlussprojekt2023;
+
 import org.python.core.PyInstance;
+import org.python.util.PythonInterpreter;
 
 public class Python_Interpreter {
-    private Python_Interpreter interpreter;
+
+    private PythonInterpreter interpreter;
+    public Object FDM;
 
     public Python_Interpreter() {
-        interpreter = new Python_Interpreter();
+        interpreter = new PythonInterpreter();
     }
 
     public void execfile(String fileName) {
@@ -13,7 +17,7 @@ public class Python_Interpreter {
     }
 
     public PyInstance createClass(String className, String opts) {
-        return (PyInstance) interpreter.eval(className + "(" + opts + ")");
+        return (PyInstance) this.interpreter.eval(className + "(" + opts + ")");
     }
 
     public static void main(String[] args) {
@@ -21,54 +25,52 @@ public class Python_Interpreter {
 
         ie.execfile("FDM_ClimateChamber.py");
 
-        PyInstance hello = ie.createClass("FDM_ClimateChamberClassMP", "None");
-
-        hello.invoke("run");
-
         PyInstance FDM = ie.createClass("FDM_ClimateChamberClassMP", "object");
 
         /*
-        FDM.invoke("convertReadingData( data: int )");
+         * FDM.invoke("convertReadingData( data: int )");
+         * 
+         * FDM.invoke("assertLimits( data )");
+         * 
+         * FDM.invoke("getChamberTemperaturePV");
+         * 
+         * FDM.invoke("getChamberTemperaturePV_NoLog");
+         * 
+         * FDM.invoke("setChamberTemperatureSP( temperature )");
+         * 
+         * FDM.invoke("getChamberTemperatureSP");
+         * 
+         * FDM.invoke("getChamberHumidityPV");
+         * 
+         * FDM.invoke("getChamberHumidityPV_NoLog");
+         * 
+         * FDM.invoke("setChamberHumiditySP( humidity )");
+         * 
+         * FDM.invoke("getChamberHumiditySP");
+         * 
+         * FDM.invoke("switchOnChamberManualRun");
+         * 
+         * FDM.invoke("switchOffChamberManualRun");
+         * 
+         * FDM.invoke("getChamberManualRunState");
+         * 
+         * FDM.invoke("switchOnHumidityControl");
+         * 
+         * FDM.invoke("switchOffHumidityControl");
+         * 
+         * FDM.invoke("getHumidityControlState");
+         * 
+         * FDM.invoke("switchOnChamberManualRun_NoLog");
+         * 
+         * FDM.invoke("waitChamberTemperaturePV_Event SP");
+         * 
+         * FDM.invoke("constChamberTemperaturePV( SP, timeMinutes )");
+         * 
+         * FDM.invoke("waitChamberHumidityPV_Event( SP )");
+         * 
+         * FDM.invoke("setCorrosionProtection");
+         * 
+         */
 
-        FDM.invoke("assertLimits( data )");
-
-        FDM.invoke("getChamberTemperaturePV");
-
-        FDM.invoke("getChamberTemperaturePV_NoLog");
-
-        FDM.invoke("setChamberTemperatureSP( temperature )");
-
-        FDM.invoke("getChamberTemperatureSP( self )");
-
-        FDM.invoke("getChamberHumidityPV");
-
-        FDM.invoke("getChamberHumidityPV_NoLog( self )");
-
-        FDM.invoke("setChamberHumiditySP( self, humidity )");
-
-        FDM.invoke("getChamberHumiditySP( self )");
-
-        FDM.invoke("switchOnChamberManualRun( self )");
-
-        FDM.invoke("switchOffChamberManualRun( self )");
-
-        FDM.invoke("getChamberManualRunState( self )");
-
-        FDM.invoke("switchOnHumidityControl( self )");
-
-        FDM.invoke("switchOffHumidityControl( self )");
-
-        FDM.invoke("getHumidityControlState( self )");
-
-        FDM.invoke("switchOnChamberManualRun_NoLog( self )");
-
-        FDM.invoke("waitChamberTemperaturePV_Event( self, SP )");
-
-        FDM.invoke("constChamberTemperaturePV( self, SP, timeMinutes )");
-
-        FDM.invoke("waitChamberHumidityPV_Event( self, SP )");
-
-        FDM.invoke("setCorrosionProtection( self )");
-        */
     }
 }
