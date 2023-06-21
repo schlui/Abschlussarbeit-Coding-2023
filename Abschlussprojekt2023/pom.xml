@@ -10,20 +10,42 @@
     <name>Abschlussprojekt2023</name>
 
     <properties>
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <junit.version>5.9.1</junit.version>
+        <junit.version>5.9.2</junit.version>
+        <javafx-fxml.version>19.0.2</javafx-fxml.version>
+        <javafx-base.version>20</javafx-base.version>
+        <javafx-control>20</javafx-control>
+        <javafx-graphics>20</javafx-graphics>
+
     </properties>
 
-    <dependencies>
+
+    <dependencyManagement>
+
+
+        <dependencies>
+
+
+            <dependency>
+                <groupId>org.vesalainen</groupId>
+                <artifactId>util</artifactId>
+                <version>1.8.0</version>
+            </dependency>
+
+
+
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-controls</artifactId>
-            <version>19</version>
+            <version>20</version>
+            <scope>compile</scope>
         </dependency>
         <dependency>
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-fxml</artifactId>
-            <version>19</version>
+            <version>19.0.2</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>
@@ -40,24 +62,29 @@
         </dependency>
 
 
-
-
-    
-      <dependency>
-        <groupId>org.vesalainen.comm</groupId>
-        <artifactId>javaxcomm</artifactId>
-        <version>1.0.1</version>
-      </dependency>
-    
       <dependency>
         <groupId>org.apache.edgent.android</groupId>
         <artifactId>edgent-connectors-serial</artifactId>
         <version>1.2.0</version>
       </dependency>
+    
+      <dependency>
+        <groupId>com.alibaba</groupId>
+        <artifactId>pemja</artifactId>
+        <version>0.2.6</version>
+          <scope>compile</scope>
+      </dependency>
+    
     </dependencies>
 
-
-
+</dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>org.python</groupId>
+            <artifactId>jython-slim</artifactId>
+            <version>2.7.3b1</version>
+        </dependency>
+    </dependencies>
 
 
     <build>
@@ -95,5 +122,7 @@
             </plugin>
         </plugins>
     </build>
-</project>
+
+
+ </project>
 

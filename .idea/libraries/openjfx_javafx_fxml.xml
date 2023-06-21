@@ -1,0 +1,26 @@
+<component name="libraryTable">
+  <library name="openjfx.javafx.fxml" type="repository">
+    <properties maven-id="org.openjfx:javafx-fxml:19.0.2" />
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-19.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-19.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-19.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-19.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-19.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-19.0.2-mac.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-19.0.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-19.0.2-mac.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-fxml-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-controls-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-graphics-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-19.0.2-javadoc.jar!/" />
+      <root url="jar://$PROJECT_DIR$/lib/javafx-base-19.0.2-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES />
+  </library>
+</component>
